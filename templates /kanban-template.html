@@ -1,0 +1,82 @@
+
+<!--
+  KANBAN BOARD — TEMPLATE (référence)
+  Ce fichier sert d'exemple statique pour montrer la structure du Kanban.
+  Le rendu réel sur index.html est généré via js/kanban.js.
+-->
+
+<section>
+  <h2>Kanban Board</h2>
+
+  <div class="kanban">
+    <!-- Colonne 1 -->
+    <div class="kanban-col">
+      <div class="kanban-col__head">
+        <div class="kanban-col__title">À faire</div>
+        <button class="kanban-add">+ Carte</button>
+      </div>
+
+      <div class="kanban-col__body">
+        <div class="kanban-card">
+          <div class="kanban-card__text">Définir le périmètre du projet</div>
+          <div class="kanban-card__actions">
+            <button class="kanban-move" title="Déplacer à gauche">←</button>
+            <button class="kanban-move" title="Déplacer à droite">→</button>
+            <button class="kanban-del" title="Supprimer">✕</button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kanban-card__text">Rédiger le cahier des charges</div>
+          <div class="kanban-card__actions">
+            <button class="kanban-move" title="Déplacer à gauche">←</button>
+            <button class="kanban-move" title="Déplacer à droite">→</button>
+            <button class="kanban-del" title="Supprimer">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne 2 -->
+    <div class="kanban-col">
+      <div class="kanban-col__head">
+        <div class="kanban-col__title">En cours</div>
+        <button class="kanban-add">+ Carte</button>
+      </div>
+
+      <div class="kanban-col__body">
+        <div class="kanban-card">
+          <div class="kanban-card__text">Maquetter l’interface</div>
+          <div class="kanban-card__actions">
+            <button class="kanban-move" title="Déplacer à gauche">←</button>
+            <button class="kanban-move" title="Déplacer à droite">→</button>
+            <button class="kanban-del" title="Supprimer">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne 3 -->
+    <div class="kanban-col">
+      <div class="kanban-col__head">
+        <div class="kanban-col__title">Terminé</div>
+        <button class="kanban-add">+ Carte</button>
+      </div>
+
+      <div class="kanban-col__body">
+        <div class="kanban-card">
+          <div class="kanban-card__text">Définir les acteurs (MOA/MOE)</div>
+          <div class="kanban-card__actions">
+            <button class="kanban-move" title="Déplacer à gauche">←</button>
+            <button class="kanban-move" title="Déplacer à droite">→</button>
+            <button class="kanban-del" title="Supprimer">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:10px;color:rgba(5,63,92,.75);font-weight:700;">
+    Colonnes : À faire → En cours → Terminé. (Exemple statique)
+  </p>
+</section>

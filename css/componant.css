@@ -1,5 +1,3 @@
-
-
 /* ===================================================
    COMPONENTS.CSS
    Styles spécifiques : WBS, RACI, Tableau financier
@@ -182,6 +180,33 @@
   margin-top:10px;
   font-weight:700;
   color:rgba(5,63,92,.75);
+}
+
+/* RACI: header actor + bouton supprimer */
+.raci-th{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.raci-del-actor{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  border:1px solid rgba(230,238,242,.9);
+  background:#fff;
+  color:#053F5C;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(5,63,92,.08);
+  line-height:1;
+}
+
+.raci-del-actor:hover{
+  border-color: rgba(247,173,25,.55);
+  background: linear-gradient(135deg, rgba(247,173,25,.95), rgba(247,173,25,.75));
+  color:#1b1200;
 }
 
 

@@ -1,0 +1,66 @@
+
+
+<!--
+  REGISTRE DES RISQUES — TEMPLATE (référence)
+  Ce fichier sert d'exemple statique pour montrer la structure du registre des risques.
+  Le rendu réel sur index.html est généré via js/risks.js.
+-->
+
+<section>
+  <h2>Registre des risques</h2>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Risque</th>
+        <th>Probabilité (1-5)</th>
+        <th>Impact (1-5)</th>
+        <th>Gravité (P × I)</th>
+        <th>Plan d’action</th>
+        <th>Responsable</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Retard dans la définition des besoins</td>
+        <td>3</td>
+        <td>4</td>
+        <td><span class="risk-sev sev-high">12 — Élevé</span></td>
+        <td>Organiser atelier MOA/MOE + validation formelle</td>
+        <td>Chef de projet</td>
+      </tr>
+
+      <tr>
+        <td>Dépassement budgétaire</td>
+        <td>2</td>
+        <td>5</td>
+        <td><span class="risk-sev sev-high">10 — Élevé</span></td>
+        <td>Mettre en place suivi mensuel des coûts</td>
+        <td>Responsable financier</td>
+      </tr>
+
+      <tr>
+        <td>Indisponibilité d’un développeur clé</td>
+        <td>4</td>
+        <td>5</td>
+        <td><span class="risk-sev sev-crit">20 — Critique</span></td>
+        <td>Prévoir un backup + documentation technique</td>
+        <td>Lead Developer</td>
+      </tr>
+
+      <tr>
+        <td>Changement fréquent des exigences</td>
+        <td>3</td>
+        <td>3</td>
+        <td><span class="risk-sev sev-med">9 — Moyen</span></td>
+        <td>Mettre en place un processus de gestion des changements</td>
+        <td>Product Owner</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:10px;color:rgba(5,63,92,.75);font-weight:700;">
+    Gravité = Probabilité × Impact (Exemple statique)
+  </p>
+</section>
