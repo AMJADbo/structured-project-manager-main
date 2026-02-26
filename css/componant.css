@@ -278,3 +278,15 @@
 .status-doing{ background: rgba(247,173,25,.18); color:#1b1200; }
 .status-done{ background: rgba(159,231,245,.35); color:#053F5C; }
 .status-late{ background: rgba(247,173,25,.55); color:#1b1200; }
+/* ===== PERT ===== */
+.pert-meta{ margin: 10px 0 14px; font-weight:800; color: rgba(5,63,92,.75); }
+.pert-hint{ margin-top:10px; font-weight:700; color: rgba(5,63,92,.65); }
+.pert-table tr.crit{ background: rgba(247,173,25,.14); }
+.alert{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(247,173,25,.45);
+  background: rgba(247,173,25,.12);
+  font-weight:800;
+  margin: 10px 0;
+}
