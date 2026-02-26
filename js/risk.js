@@ -1,3 +1,14 @@
+
+console.log("[SPM] risks.js LOADED");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("risksContainer");
+  if (!el) {
+    console.error("[SPM] risksContainer introuvable");
+    return;
+  }
+  el.innerHTML = "<p style='padding:16px;font-weight:800'>✅ Risks OK (JS chargé)</p>";
+});
 // risks.js — Registre des risques (CRUD) + gravité auto (P x I) + localStorage
 (function () {
   const containerId = "risksContainer";

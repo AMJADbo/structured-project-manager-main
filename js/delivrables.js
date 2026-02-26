@@ -1,3 +1,14 @@
+console.log("[SPM] deliverables.js LOADED");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("deliverablesContainer");
+  if (!el) {
+    console.error("[SPM] deliverablesContainer introuvable");
+    return;
+  }
+  // Test rendu immédiat
+  el.innerHTML = "<p style='padding:16px;font-weight:800'>✅ Deliverables OK (JS chargé)</p>";
+});
 // deliverables.js — Tableau des livrables (CRUD simple) + localStorage
 (function () {
   const containerId = "deliverablesContainer";
