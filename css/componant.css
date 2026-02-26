@@ -1,0 +1,197 @@
+
+
+/* ===================================================
+   COMPONENTS.CSS
+   Styles spécifiques : WBS, RACI, Tableau financier
+   =================================================== */
+
+
+/* =========================
+   WBS (Organigramme tâches)
+   ========================= */
+
+#wbsContainer{
+  padding:16px;
+}
+
+.wbs{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.wbs-node{
+  border:1px solid rgba(230,238,242,.95);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(159,231,245,.08));
+  box-shadow:0 8px 18px rgba(5,63,92,.06);
+  overflow:hidden;
+}
+
+.wbs-node__row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:14px;
+}
+
+.wbs-node__meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:130px;
+}
+
+.wbs-badge{
+  padding:6px 12px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:12px;
+  background:rgba(159,231,245,.55);
+  color:#053F5C;
+  border:1px solid rgba(66,158,189,.25);
+}
+
+.wbs-id{
+  font-weight:800;
+  font-size:12px;
+  color:rgba(5,63,92,.8);
+}
+
+.wbs-node__title{
+  flex:1;
+}
+
+.wbs-node__actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.wbs-btn{
+  border:1px solid rgba(66,158,189,.35);
+  background:linear-gradient(135deg, rgba(66,158,189,.95), rgba(66,158,189,.75));
+  color:#fff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:12px;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(5,63,92,.10);
+}
+
+.wbs-btn.secondary{
+  background:#fff;
+  color:#053F5C;
+  border:1px solid rgba(230,238,242,.9);
+}
+
+.wbs-btn.danger{
+  background:linear-gradient(135deg, rgba(247,173,25,.95), rgba(247,173,25,.75));
+  color:#1b1200;
+  border:1px solid rgba(247,173,25,.55);
+}
+
+.wbs-children{
+  padding:0 16px 16px 16px;
+}
+
+.wbs-children__inner{
+  margin-left:18px;
+  padding-left:18px;
+  border-left:2px dashed rgba(66,158,189,.45);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.wbs-level-1 .wbs-badge{ background:rgba(159,231,245,.55); }
+.wbs-level-2 .wbs-badge{ background:rgba(159,231,245,.40); }
+.wbs-level-3 .wbs-badge{ background:rgba(159,231,245,.28); }
+.wbs-level-4 .wbs-badge{ background:rgba(159,231,245,.18); }
+
+.wbs-empty{
+  border:1px dashed rgba(66,158,189,.45);
+  border-radius:14px;
+  padding:16px;
+  font-weight:700;
+  background:rgba(159,231,245,.15);
+  color:rgba(5,63,92,.75);
+}
+
+
+/* =========================
+   TABLES (RACI / FINANCE)
+   ========================= */
+
+.fin-table,
+.raci-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0 10px;
+}
+
+.fin-table th,
+.fin-table td,
+.raci-table th,
+.raci-table td{
+  padding:10px 12px;
+  white-space:nowrap;
+}
+
+.fin-table{
+  min-width:1000px;
+}
+
+.raci-table{
+  min-width:800px;
+}
+
+.fin-table thead th,
+.raci-table thead th{
+  color:#053F5C;
+  font-weight:900;
+  font-size:14px;
+}
+
+.fin-table tbody tr,
+.raci-table tbody tr{
+  background:#fff;
+  border:1px solid rgba(230,238,242,.95);
+  box-shadow:0 8px 16px rgba(5,63,92,.06);
+}
+
+.fin-table tbody tr td:first-child,
+.fin-table tbody tr td:nth-child(2){
+  font-weight:800;
+  color:#053F5C;
+}
+
+.fin-total{
+  background:linear-gradient(90deg, rgba(159,231,245,.35), rgba(255,255,255,0));
+}
+
+.fin-table input{
+  min-width:75px;
+}
+
+.raci-legend{
+  margin-top:10px;
+  font-weight:700;
+  color:rgba(5,63,92,.75);
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width:640px){
+  .wbs-node__row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+}
