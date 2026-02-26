@@ -1,0 +1,30 @@
+<!--
+  WBS TEMPLATE (référence)
+  Le rendu final est généré en JS dans js/wbs.js.
+  Cette page sert juste de mémo / exemple de structure.
+-->
+
+<div class="wbs-node wbs-level-1">
+  <div class="wbs-node__row">
+    <div class="wbs-node__meta">
+      <span class="wbs-badge">Niveau 1</span>
+      <span class="wbs-id">N1-1</span>
+    </div>
+
+    <div class="wbs-node__title">
+      <input type="text" placeholder="Nom de la tâche" />
+    </div>
+
+    <div class="wbs-node__actions">
+      <button class="wbs-btn">+ Sous-tâche</button>
+      <button class="wbs-btn secondary">+ Même niveau</button>
+      <button class="wbs-btn danger">Supprimer</button>
+    </div>
+  </div>
+
+  <div class="wbs-children">
+    <div class="wbs-children__inner">
+      <!-- enfants -->
+    </div>
+  </div>
+</div>

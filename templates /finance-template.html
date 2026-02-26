@@ -1,0 +1,77 @@
+// finance-template.js — version template (statique + total auto)
+(function () {
+  const months = ["Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre"];
+
+  // Données exemple (comme ta slide)
+  let rows = [
+    { task: "A", budget: 20, months: [20, 0, 0, 0, 0, 0] },
+    { task: "B", budget: 250, months: [0, 50, 100, 100, 0, 0] },
+    { task: "C", budget: 200, months: [0, 0, 0, 0, 80, 120] },
+  ];
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function sum(arr) {
+    return arr.reduce((a, b) => a + (Number(b) || 0), 0);
+  }
+
+  function calcTotals() {
+    const totalBudget = sum(rows.map(r => r.budget));
+    const totalMonths = months.map((_, j) => sum(rows.map(r => r.months[j] || 0)));
+    return { totalBudget, totalMonths };
+  }
+
+  function render() {
+    const container = $("financeContainer");
+    if (!container) return;
+
+    const { totalBudget, totalMonths } = calcTotals();
+
+    container.innerHTML = `
+      <div style="padding: 16px;">
+        <div style="overflow:auto;">
+          <table class="fin-table">
+            <thead>
+              <tr>
+                <th>Tâches</th>
+                <th>Budget</th>
+                ${months.map(m => `<th>${m}</th>`).join("")}
+              </tr>
+            </thead>
+            <tbody>
+              ${rows
+                .map(
+                  (r) => `
+                  <tr>
+                    <td>${r.task}</td>
+                    <td>${r.budget}</td>
+                    ${r.months.map(v => `<td>${v}</td>`).join("")}
+                  </tr>
+                `
+                )
+                .join("")}
+
+              <tr class="fin-total">
+                <td><b>TOTAL</b></td>
+                <td><b>${totalBudget}</b></td>
+                ${totalMonths.map(v => `<td><b>${v}</b></td>`).join("")}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+
+  function init() {
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
