@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Structured Project Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/component.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>Structured Project Manager</h1>
+    <button id="exportPdf">Exporter en PDF</button>
+</header>
+
+<main class="container">
+
+    <!-- ===================== -->
+    <!-- INFOS PROJET -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>Informations du projet</h2>
+
+        <input type="text" placeholder="Titre du projet">
+        <textarea placeholder="Description"></textarea>
+        <input type="date">
+        <input type="number" placeholder="Coût estimé (€)">
+        <textarea placeholder="Objectif du projet"></textarea>
+        <textarea placeholder="Résultats atteints"></textarea>
+    </section>
+
+    <!-- ===================== -->
+    <!-- ACTEURS -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>Acteurs</h2>
+        <textarea placeholder="MOA, MOE, Chef de projet, Développeur..."></textarea>
+    </section>
+
+    <!-- ===================== -->
+    <!-- WBS / OT -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>WBS / Organigramme des tâches (4 niveaux)</h2>
+        <div id="wbsContainer"></div>
+        <button id="addWbs">Ajouter une tâche niveau 1</button>
+    </section>
+
+    <!-- ===================== -->
+    <!-- RACI -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>Modèle RACI</h2>
+        <div id="raciContainer"></div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- TRIANGLE D'OR -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>Triangle d'or</h2>
+        <div class="triangle">
+            <div>Coût</div>
+            <div>Délai</div>
+            <div>Qualité</div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- TABLEAU FINANCIER -->
+    <!-- ===================== -->
+    <section class="card">
+        <h2>Tableau financier</h2>
+        <div id="financeContainer"></div>
+    </section>
+
+</main>
+
+<!-- JS -->
+<script src="js/main.js"></script>
+<script src="js/wbs.js"></script>
+<script src="js/raci.js"></script>
+<script src="js/finance.js"></script>
+<script src="js/pdf.js"></script>
+
+</body>
+</html>
