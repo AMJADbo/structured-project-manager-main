@@ -1,10 +1,13 @@
-// raci.js — RACI simple (acteurs + activités manuelles)
-
+// raci.js — RACI (ajout/suppression d'acteurs + activités) avec conservation des choix
 (function () {
   const containerId = "raciContainer";
 
+  // État
   let actors = ["Robert", "Denise", "Michèle"];
   let activities = ["Évaluer l’existant", "Définir attentes utilisateurs", "Définir attentes contenu"];
+
+  // matrix[i][j] => "R" | "A" | "C" | "I" | ""
+  let matrix = activities.map(() => actors.map(() => ""));
 
   function escapeHtml(s) {
     return String(s)
@@ -15,30 +18,69 @@
       .replaceAll("'", "&#039;");
   }
 
+  function ensureMatrixSize() {
+    if (!Array.isArray(matrix)) matrix = [];
+
+    // Ajuste le nombre de lignes (activités)
+    while (matrix.length < activities.length) matrix.push([]);
+    while (matrix.length > activities.length) matrix.pop();
+
+    // Ajuste le nombre de colonnes (acteurs)
+    for (let i = 0; i < activities.length; i++) {
+      if (!Array.isArray(matrix[i])) matrix[i] = [];
+      while (matrix[i].length < actors.length) matrix[i].push("");
+      while (matrix[i].length > actors.length) matrix[i].pop();
+    }
+  }
+
   function render() {
     const el = document.getElementById(containerId);
     if (!el) return;
 
-    const headCols = actors.map(a => `<th>${escapeHtml(a)}</th>`).join("");
+    ensureMatrixSize();
 
-    const bodyRows = activities.map((act, i) => {
-      const cols = actors.map((_, j) => `
-        <td>
-          <select data-act="${i}" data-actor="${j}">
-            <option value=""></option>
-            <option value="R">R</option>
-            <option value="A">A</option>
-            <option value="C">C</option>
-            <option value="I">I</option>
-          </select>
-        </td>
-      `).join("");
+    const headCols = actors
+      .map(
+        (a, j) => `
+          <th>
+            <div class="raci-th">
+              <span>${escapeHtml(a)}</span>
+              <button class="raci-del-actor" title="Supprimer cet acteur" data-actor="${j}">×</button>
+            </div>
+          </th>
+        `
+      )
+      .join("");
 
-      return `<tr>
-        <td><input type="text" class="raci-act" data-actname="${i}" value="${escapeHtml(act)}" /></td>
-        ${cols}
-      </tr>`;
-    }).join("");
+    const bodyRows = activities
+      .map((act, i) => {
+        const cols = actors
+          .map((_, j) => {
+            const val = matrix?.[i]?.[j] ?? "";
+            return `
+              <td>
+                <select class="raci-cell" data-act="${i}" data-actor="${j}">
+                  <option value="" ${val === "" ? "selected" : ""}></option>
+                  <option value="R" ${val === "R" ? "selected" : ""}>R</option>
+                  <option value="A" ${val === "A" ? "selected" : ""}>A</option>
+                  <option value="C" ${val === "C" ? "selected" : ""}>C</option>
+                  <option value="I" ${val === "I" ? "selected" : ""}>I</option>
+                </select>
+              </td>
+            `;
+          })
+          .join("");
+
+        return `
+          <tr>
+            <td>
+              <input type="text" class="raci-act" data-actname="${i}" value="${escapeHtml(act)}" />
+            </td>
+            ${cols}
+          </tr>
+        `;
+      })
+      .join("");
 
     el.innerHTML = `
       <div class="section-actions">
@@ -60,6 +102,7 @@
             </tbody>
           </table>
         </div>
+
         <div class="raci-legend">R = Responsable • A = Accountable • C = Consulté • I = Informé</div>
       </div>
     `;
@@ -68,27 +111,70 @@
   }
 
   function bind() {
+    // Ajouter acteur
     document.getElementById("raciAddActor")?.addEventListener("click", () => {
       const name = prompt("Nom de l’acteur ?");
       if (!name) return;
-      actors.push(name);
+      actors.push(name.trim());
+      ensureMatrixSize();
       render();
     });
 
+    // Ajouter activité
     document.getElementById("raciAddActivity")?.addEventListener("click", () => {
       activities.push("Nouvelle activité");
+      ensureMatrixSize();
       render();
     });
 
-    document.querySelectorAll(".raci-act").forEach(input => {
+    // Supprimer acteur
+    document.querySelectorAll(".raci-del-actor").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const j = Number(btn.getAttribute("data-actor"));
+        if (Number.isNaN(j)) return;
+
+        if (actors.length <= 1) {
+          alert("Il doit rester au moins 1 acteur.");
+          return;
+        }
+
+        const ok = confirm(`Supprimer l’acteur : ${actors[j]} ?`);
+        if (!ok) return;
+
+        actors.splice(j, 1);
+        for (let i = 0; i < matrix.length; i++) {
+          matrix[i].splice(j, 1);
+        }
+        ensureMatrixSize();
+        render();
+      });
+    });
+
+    // Renommer activité
+    document.querySelectorAll(".raci-act").forEach((input) => {
       input.addEventListener("input", () => {
-        const idx = Number(input.getAttribute("data-actname"));
-        activities[idx] = input.value;
+        const i = Number(input.getAttribute("data-actname"));
+        if (Number.isNaN(i)) return;
+        activities[i] = input.value;
+      });
+    });
+
+    // Choix R/A/C/I
+    document.querySelectorAll(".raci-cell").forEach((sel) => {
+      sel.addEventListener("change", () => {
+        const i = Number(sel.getAttribute("data-act"));
+        const j = Number(sel.getAttribute("data-actor"));
+        if (Number.isNaN(i) || Number.isNaN(j)) return;
+        ensureMatrixSize();
+        matrix[i][j] = sel.value;
       });
     });
   }
 
-  function init() { render(); }
+  function init() {
+    ensureMatrixSize();
+    render();
+  }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
