@@ -11,17 +11,72 @@
 </head>
 <body>
 
-<header class="header">
-    <h1>Structured Project Manager</h1>
+<header class="appbar">
+  <div class="appbar__left">
+    <div class="brand">
+      <div class="brand__logo">PM</div>
+      <div class="brand__text">
+        <div class="brand__name">Structured PM</div>
+        <div class="brand__tag">Project Management Workspace</div>
+      </div>
+    </div>
+
+    <input id="projectTitleTop" class="appbar__input" type="text" placeholder="Titre du projet…" />
+  </div>
+
+  <nav class="appbar__nav">
+    <a href="#infos">Infos</a>
+    <a href="#actors">Acteurs</a>
+    <a href="#wbs">WBS</a>
+    <a href="#raci">RACI</a>
+    <a href="#finance">Finance</a>
+    <a href="#kanban">Kanban</a>
+    <a href="#deliverables">Livrables</a>
+    <a href="#risks">Risques</a>
+  </nav>
+
+  <div class="appbar__right">
     <button id="exportPdf">Exporter en PDF</button>
+  </div>
 </header>
 
 <main class="container">
+<!-- ===================== -->
+<!-- KPI DASHBOARD -->
+<!-- ===================== -->
+<section class="card finance-wide kpi-wide" id="kpi">
+  <h2>Dashboard KPI</h2>
 
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi__label">Avancement</div>
+      <div class="kpi__value" id="kpiProgress">0%</div>
+      <div class="kpi__hint" id="kpiProgressHint">0 / 0 tâches terminées</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">Budget total</div>
+      <div class="kpi__value" id="kpiBudget">0 €</div>
+      <div class="kpi__hint" id="kpiBudgetHint">Budget estimé</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">Risques actifs</div>
+      <div class="kpi__value" id="kpiRisks">0</div>
+      <div class="kpi__hint" id="kpiRisksHint">0 critiques / 0 élevés</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">Livrables</div>
+      <div class="kpi__value" id="kpiDeliverables">0 / 0</div>
+      <div class="kpi__hint" id="kpiDeliverablesHint">Terminés</div>
+    </div>
+  </div>
+</section>
     <!-- ===================== -->
     <!-- INFOS PROJET -->
     <!-- ===================== -->
-    <section class="card">
+    <section class="card" id="infos">
         <h2>Informations du projet</h2>
 
         <input type="text" placeholder="Titre du projet">
@@ -35,7 +90,7 @@
     <!-- ===================== -->
     <!-- ACTEURS -->
     <!-- ===================== -->
-    <section class="card">
+    <section class="card" id="actors">
         <h2>Acteurs</h2>
         <textarea placeholder="MOA, MOE, Chef de projet, Développeur..."></textarea>
     </section>
@@ -43,7 +98,7 @@
     <!-- ===================== -->
     <!-- WBS / OT -->
     <!-- ===================== -->
-    <section class="card wbs-grow">
+    <section class="card wbs-grow" id="wbs">
         <h2>WBS / Organigramme des tâches (4 niveaux)</h2>
         <div id="wbsContainer"></div>
         <button id="addWbs">Ajouter une tâche niveau 1</button>
@@ -52,18 +107,15 @@
     <!-- ===================== -->
     <!-- RACI -->
     <!-- ===================== -->
-    <section class="card">
+    <section class="card" id="raci">
         <h2>Modèle RACI</h2>
         <div id="raciContainer"></div>
-    </section>
-
-    
     </section>
 
     <!-- ===================== -->
     <!-- TABLEAU FINANCIER -->
     <!-- ===================== -->
-    <section class="card finance-wide">
+    <section class="card finance-wide" id="finance">
         <h2>Tableau financier</h2>
         <div id="financeContainer"></div>
     </section>
@@ -71,7 +123,7 @@
     <!-- ===================== -->
     <!-- KANBAN BOARD -->
     <!-- ===================== -->
-    <section class="card finance-wide">
+    <section class="card finance-wide" id="kanban">
         <h2>Kanban Board</h2>
         <div id="kanbanContainer"></div>
     </section>
@@ -79,7 +131,7 @@
     <!-- ===================== -->
     <!-- TABLEAU DES LIVRABLES -->
     <!-- ===================== -->
-    <section class="card finance-wide">
+    <section class="card finance-wide" id="deliverables">
         <h2>Tableau des livrables</h2>
         <div id="deliverablesContainer"></div>
     </section>
@@ -87,7 +139,7 @@
     <!-- ===================== -->
     <!-- REGISTRE DES RISQUES -->
     <!-- ===================== -->
-    <section class="card finance-wide">
+    <section class="card finance-wide" id="risks">
         <h2>Registre des risques</h2>
         <div id="risksContainer"></div>
     </section>
@@ -103,6 +155,7 @@
 <script src="js/kanban.js"></script>
 <script src="js/deliverables.js"></script>
 <script src="js/risks.js"></script>
+<script src="js/kpi.js"></script>
 <script src="js/pdf.js"></script>
 
 </body>

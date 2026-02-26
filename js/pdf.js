@@ -1,5 +1,5 @@
 // pdf.js — version simple : impression navigateur (Ctrl/Cmd + P)
-
+<script src="js/kpi.js"></script>
 (function () {
   function init() {
     const btn = document.getElementById("exportPdf");
